@@ -107,7 +107,7 @@ header {
     margin: 20px auto 0 auto;
 }*/
 
-/* Estilo para cada tecla (a generar con JS) */
+/* Estilo para cada tecla (a generar con JS) 
 .key {
     font-family: "Press Start 2P", monospace;
     font-size: 1.2em;
@@ -118,7 +118,7 @@ header {
     background-color: #f9f9f9;
     cursor: grab;
     transition: background-color 0.3s, transform 0.1s;
-}
+}*/
 
 .key:hover {
     background-color: #e0e0e0;
@@ -181,6 +181,7 @@ header {
         }
 
         .key {
+            font-family: "Press Start 2P", monospace;
             font-size: 1.2em;
             font-weight: bold;
             width: 45px;
@@ -204,4 +205,5 @@ header {
         .sortable-drag {
             opacity: 1 !important; /* Aseguramos que el elemento original no desaparezca */
         }
+
 
