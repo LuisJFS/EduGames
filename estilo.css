@@ -65,11 +65,11 @@ header {
     margin-top: 8px;
 }
 
-/* --- Sección de la Palabra a Completar --- */
+/* --- Sección de la Palabra a Completar ---
 #word-display-section {
     margin-bottom: 30px;
     width: 100%;
-}
+}*/
 
 #word-blanks {
     display: flex;
@@ -102,7 +102,7 @@ header {
     display: flex;
     justify-content: center;
     flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea */
-    gap: 8px; /* Espacio entre los botones del teclado */
+    gap: 8px; /* Espacio entre los botones del teclado
     max-width: 500px;
     margin: 20px auto 0 auto;
 }*/
@@ -118,22 +118,22 @@ header {
     background-color: #f9f9f9;
     cursor: grab;
     transition: background-color 0.3s, transform 0.1s;
-}*/
+}
 
 .key:hover {
     background-color: #e0e0e0;
 }
 
 .key:active {
-    transform: scale(0.96); /* Efecto de presión */
+    transform: scale(0.96); /* Efecto de presión
 }
 
-/* Clase para deshabilitar una tecla ya usada */
+/* Clase para deshabilitar una tecla ya usada
 .key:disabled {
     background-color: #dcdcdc;
     color: #888;
     cursor: not-allowed;
-}
+}*/
 
 
 /* --- Pie de Página y Estado del Juego --- */
@@ -205,6 +205,7 @@ header {
 .sortable-drag {
     opacity: 1 !important; /* Aseguramos que el elemento original no desaparezca */
 }
+
 
 
 
