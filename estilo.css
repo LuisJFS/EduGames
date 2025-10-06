@@ -93,7 +93,7 @@ header {
     transition: background-color 0.3s, border-color 0.3s;
 }
 
-/* --- Sección del Teclado --- */
+/* --- Sección del Teclado ---
 #keyboard-section {
     flex-basis: 400px;
 }
@@ -105,7 +105,7 @@ header {
     gap: 8px; /* Espacio entre los botones del teclado */
     max-width: 500px;
     margin: 20px auto 0 auto;
-}
+}*/
 
 /* Estilo para cada tecla (a generar con JS) */
 .key {
@@ -204,3 +204,4 @@ header {
         .sortable-drag {
             opacity: 1 !important; /* Aseguramos que el elemento original no desaparezca */
         }
+
