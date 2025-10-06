@@ -7,6 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     pActual = Math.floor(Math.random() * palabras.length);
     palabraParaAdivinar = palabras[pActual];
+    const imagenActual = document.getElementById("hint-image"); // Obteniendo el id de la imagen
+    // Cambiar la imagen segun la palabra
+    switch (palabraParaAdivinar) {
+        case "GUARDAR":
+            imagenActual.src = "./images/guardar.jpg";
+            break
+        case "JUSTIFICAR":
+            imagenActual.src = "./images/justificar.jpg";
+            break
+        case "ESPACIADO":
+            imagenActual.src = "./images/espaciado.jpg";
+            break
+        case "SANGRIA":
+            imagenActual.src = "./images/sangria.jpg";
+            break
+        default:
+            imagenActual.src = "";
+    }
 
     // --- 2. Función para mostrar la palabra con pistas ---
     function mostrarPalabraConPistas(palabra) {
@@ -132,4 +150,5 @@ document.addEventListener('DOMContentLoaded', () => {
     mostrarPalabraConPistas(palabraParaAdivinar);
     generarTeclado(); // Llamamos a la nueva función
     activarDragAndDrop(); // Llamamos a la nueva función
+
 });
