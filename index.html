@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego: Completa la Palabra</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+
+<body>
+    <script src="game.js"></script>
+
+    <main id="game-container">
+
+        <header>
+            <h1>COMPLETALO!</h1>
+        </header>
+
+        <div id="main-game-area">
+
+            <div id="left-panel">
+                <section id="image-hint-section">
+                    <figure>
+                        <img id="hint-image" src="./images/justificar.jpg" alt="Imagen de pista para adivinar la palabra">
+                        <figcaption id="image-caption">Observa la imagen y completa el nombre.</figcaption>
+                    </figure>
+                </section>
+
+                <section id="word-display-section">
+                    <h2>Palabra a completar</h2>
+                    <div id="word-blanks">
+                        </div>
+                </section>
+            </div>
+
+            <section id="keyboard-section">
+                <h2>Teclado</h2>
+                <div id="keyboard-container">
+                    </div>
+            </section>
+        </div>
+
+        <footer id="game-status">
+            <p>Intentos restantes: <span id="tries-left">6</span></p>
+            <button id="reset-button">Reiniciar Juego</button>
+        </footer>
+
+    </main>
+
+</body>
+</html>

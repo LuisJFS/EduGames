@@ -1,0 +1,190 @@
+/* --- Estilos Generales --- */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+body {
+    font-family: "Press Start 2P", monospace;
+    background-color: #0f0f1b; /* Un gris claro para el fondo */
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* --- Contenedor Principal del Juego --- */
+#game-container {
+    background-color: #ffffff;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 1000px; /* Ancho máximo para el juego */
+    text-align: center;
+}
+
+header {
+    color: #1a73e8; /* Un azul atractivo */
+    font-size: 15px;
+
+}
+
+/* --- NUEVO: Contenedor principal del juego (Flexbox) --- */
+#main-game-area {
+    display: flex; /* La magia para poner elementos lado a lado */
+    gap: 25px; /* Espacio entre la zona de juego y el teclado */
+    align-items: center; /* Centra verticalmente ambos lados */
+}
+
+/* --- NUEVO: Contenedor Izquierdo (Palabra e Imagen) --- */
+#left-panel {
+    flex: 1; /* Ocupa el espacio disponible */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* --- Sección de la Pista Visual --- */
+#image-hint-section figure {
+    margin: 0 auto 20px auto; /* Centrar y dar espacio inferior */
+}
+
+#hint-image {
+    width: 150px;
+    height: 50px;
+    border: 4px solid #ddd;
+    border-radius: 8px;
+    min-height: 130px; /* Espacio reservado si la imagen no ha cargado */
+    background-color: #fafafa;
+}
+
+#image-caption {
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 8px;
+}
+
+/* --- Sección de la Palabra a Completar --- */
+#word-display-section {
+    margin-bottom: 30px;
+    width: 100%;
+}
+
+#word-blanks {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espacio entre las letras */
+    height: 50px; /* Altura fija para alinear las letras */
+    flex-wrap: wrap;
+}
+
+/* Estilo para cada espacio/letra (a generar con JS) */
+.letter-slot {
+    width: 50px;
+    height: 50px;
+    border-bottom: 3px solid #1a73e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em; /* Tamaño grande para la letra */
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* --- Sección del Teclado --- */
+#keyboard-section {
+    flex-basis: 400px;
+}
+
+#keyboard-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Permite que los botones pasen a la siguiente línea */
+    gap: 8px; /* Espacio entre los botones del teclado */
+    max-width: 500px;
+    margin: 20px auto 0 auto;
+}
+
+/* Estilo para cada tecla (a generar con JS) */
+.key {
+    font-family: "Press Start 2P", monospace;
+    font-size: 1.2em;
+    width: 45px;
+    height: 45px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    cursor: grab;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.key:hover {
+    background-color: #e0e0e0;
+}
+
+.key:active {
+    transform: scale(0.96); /* Efecto de presión */
+}
+
+/* Clase para deshabilitar una tecla ya usada */
+.key:disabled {
+    background-color: #dcdcdc;
+    color: #888;
+    cursor: not-allowed;
+}
+
+
+/* --- Pie de Página y Estado del Juego --- */
+#game-status {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid #eee;
+}
+
+#reset-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1em;
+    border: none;
+    border-radius: 6px;
+    background-color: #1a73e8;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#reset-button:hover {
+    background-color: #1558b3;
+}
+
+ /* --- NUEVOS ESTILOS PARA DRAG & DROP --- */
+.letter-slot.drag-over {
+    background-color: #e8f0fe; /* Fondo azul claro al sobrevolar */
+    border-bottom-color: #4285f4;
+}
+
+.letter-slot.correct {
+    border-color: #34a853; /* Borde verde si es correcto */
+    color: #34a853;
+}
+@keyframes cambiarIncorrecto {
+    50% {border-color: red;}
+}
+.letter-slot.incorrect {
+    animation-name: cambiarIncorrecto;
+    animation-duration: 2s;
+}
+        
+/* NUEVO: Estilo para la tecla mientras se arrastra */
+.key.dragging {
+    opacity: 0.6;
+    cursor: grabbing;
+}
+        
+.key:disabled {
+    background-color: #dcdcdc;
+    color: #888;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
