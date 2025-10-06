@@ -84,48 +84,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-            function inicializarJuego() {
-                mostrarPalabra(palabraParaAdivinar);
-                generarTeclado();
-                // --- SOPORTE PARA FUNCIONABILIDAD EN MOVILES Y ESCRITORIO ---
+    function inicializarJuego() {
+        mostrarPalabra(palabraParaAdivinar);
+        generarTeclado();
+        // --- SOPORTE PARA FUNCIONABILIDAD EN MOVILES Y ESCRITORIO ---
 
-                // 1. Hacemos que el teclado sea un grupo de elementos arrastrables
-                new Sortable(keyboardContainer, {
-                    group: 'shared', // Permite arrastrar entre este y otros grupos con el mismo nombre
-                    animation: 150
-                });
+        // 1. Hacemos que el teclado sea un grupo de elementos arrastrables
+        new Sortable(keyboardContainer, {
+            group: 'shared', // Permite arrastrar entre este y otros grupos con el mismo nombre
+            animation: 150
+        });
 
-                // 2. Hacemos que los espacios de la palabra también sean un grupo
-                new Sortable(wordContainer, {
-                    group: 'shared',
-                    animation: 150,
-                    // Evento que se dispara cuando se añade un elemento a este contenedor
-                    onAdd: function (evt) {
-                        const droppedKey = evt.item; // El elemento (tecla) que se soltó
-                        const targetSlot = evt.to.children[evt.newIndex]; // El espacio donde se soltó
+        // 2. Hacemos que los espacios de la palabra también sean un grupo
+        new Sortable(wordContainer, {
+            group: 'shared',
+            animation: 150,
+            // Evento que se dispara cuando se añade un elemento a este contenedor
+            onAdd: function (evt) {
+                const droppedKey = evt.item; // El elemento (tecla) que se soltó
+                const targetSlot = evt.to.children[evt.newIndex]; // El espacio donde se soltó
 
-                        const droppedLetter = droppedKey.getAttribute('data-key');
-                        const correctLetter = targetSlot.getAttribute('data-correct-letter');
+                const droppedLetter = droppedKey.getAttribute('data-key');
+                const correctLetter = targetSlot.getAttribute('data-correct-letter');
 
-                        // Comprobación de la letra
-                        if (droppedLetter === correctLetter) {
-                            // Si es correcto, reemplazamos el espacio vacío por la tecla
-                            targetSlot.parentNode.replaceChild(droppedKey, targetSlot);
-                            droppedKey.classList.add('correct');
-                            // Lo convertimos en un slot lleno para que no se pueda mover más
-                            droppedKey.classList.replace('key', 'letter-slot');
-                            droppedKey.classList.add('filled');
-                        } else {
-                            // Si es incorrecto, devolvemos la tecla a su origen (el teclado)
-                            keyboardContainer.appendChild(droppedKey);
-                        }
-                    }
-                });
+            // Comprobación de la letra
+               if (droppedLetter === correctLetter) {
+                    // Si es correcto, reemplazamos el espacio vacío por la tecla
+                    targetSlot.parentNode.replaceChild(droppedKey, targetSlot);
+                    droppedKey.classList.add('correct');
+                    // Lo convertimos en un slot lleno para que no se pueda mover más
+                    droppedKey.classList.replace('key', 'letter-slot');
+                    droppedKey.classList.add('filled');
+                } else {
+                    // Si es incorrecto, devolvemos la tecla a su origen (el teclado)
+                    keyboardContainer.appendChild(droppedKey);
+                }
             }
+        });
+    }
 
     // --- 4. Inicialización del juego ---
     inicializarJuego();
 
 });
+
 
 
