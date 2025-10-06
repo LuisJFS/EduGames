@@ -83,72 +83,48 @@ document.addEventListener('DOMContentLoaded', () => {
             keyboardContainer.appendChild(keyButton);
         });
     }
+    
+            function inicializarJuego() {
+                mostrarPalabra(palabraParaAdivinar);
+                generarTeclado();
+                // --- SOPORTE PARA FUNCIONABILIDAD EN MOVILES Y ESCRITORIO ---
 
-    // --- NUEVO: Función para activar la funcionalidad Drag & Drop ---
-    function activarDragAndDrop() {
-        const keys = document.querySelectorAll('.key');
-        const slots = document.querySelectorAll('.letter-slot');
-
-        // 1. Eventos para las teclas arrastrables
-        keys.forEach(key => {
-            key.addEventListener('dragstart', (event) => {
-                // Guardamos la letra que se está arrastrando
-                event.dataTransfer.setData('text/plain', key.getAttribute('data-key'));
-                // Añadimos un estilo visual a la tecla que se arrastra
-                setTimeout(() => key.classList.add('dragging'), 0);
-            });
-
-            key.addEventListener('dragend', () => {
-                 // Limpiamos el estilo visual cuando se suelta
-                key.classList.remove('dragging');
-            });
-        });
-
-        // 2. Eventos para los espacios (zonas de destino)
-        slots.forEach(slot => {
-            // Solo los espacios vacíos pueden ser zonas de destino
-            if (slot.textContent === '') {
-                slot.addEventListener('dragover', (event) => {
-                    event.preventDefault(); // Permite que se pueda soltar aquí
-                    slot.classList.add('drag-over');
+                // 1. Hacemos que el teclado sea un grupo de elementos arrastrables
+                new Sortable(keyboardContainer, {
+                    group: 'shared', // Permite arrastrar entre este y otros grupos con el mismo nombre
+                    animation: 150
                 });
 
-                slot.addEventListener('dragleave', () => {
-                    slot.classList.remove('drag-over'); // Quita el resaltado al salir
-                });
+                // 2. Hacemos que los espacios de la palabra también sean un grupo
+                new Sortable(wordContainer, {
+                    group: 'shared',
+                    animation: 150,
+                    // Evento que se dispara cuando se añade un elemento a este contenedor
+                    onAdd: function (evt) {
+                        const droppedKey = evt.item; // El elemento (tecla) que se soltó
+                        const targetSlot = evt.to.children[evt.newIndex]; // El espacio donde se soltó
 
-                slot.addEventListener('drop', (event) => {
-                    event.preventDefault(); // Evita comportamiento por defecto del navegador
-                    slot.classList.remove('drag-over');
-                                    
-                    const draggedLetter = event.dataTransfer.getData('text/plain');
-                    const correctLetter = slot.getAttribute('data-letra');
+                        const droppedLetter = droppedKey.getAttribute('data-key');
+                        const correctLetter = targetSlot.getAttribute('data-correct-letter');
 
-                    // 3. Comprobar si la letra es correcta
-                    if (draggedLetter === correctLetter) {
-                        slot.textContent = correctLetter;
-                        slot.classList.add('correct');
-                                    
-                        // Deshabilitar la tecla del teclado que se usó
-                        const keyButton = document.querySelector(`.key[data-key='${draggedLetter}']`);
-                        if (keyButton) {
-                            keyButton.disabled = true;
+                        // Comprobación de la letra
+                        if (droppedLetter === correctLetter) {
+                            // Si es correcto, reemplazamos el espacio vacío por la tecla
+                            targetSlot.parentNode.replaceChild(droppedKey, targetSlot);
+                            droppedKey.classList.add('correct');
+                            // Lo convertimos en un slot lleno para que no se pueda mover más
+                            droppedKey.classList.replace('key', 'letter-slot');
+                            droppedKey.classList.add('filled');
+                        } else {
+                            // Si es incorrecto, devolvemos la tecla a su origen (el teclado)
+                            keyboardContainer.appendChild(droppedKey);
                         }
-                        // Ya no se puede soltar nada más en este espacio
-                        slot.removeEventListener('dragover', arguments.callee);
-                    } else {
-                        // Opcional: Añadir efecto si la letra es incorrecta (ej. un shake)
-                        slot.classList.add('incorrect');
                     }
                 });
             }
-        });
-    }
-
 
     // --- 4. Inicialización del juego ---
-    mostrarPalabraConPistas(palabraParaAdivinar);
-    generarTeclado(); // Llamamos a la nueva función
-    activarDragAndDrop(); // Llamamos a la nueva función
+    inicializarJuego();
 
 });
+
