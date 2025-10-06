@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // --- MODIFICADO: Creamos los elementos <span> con la lógica de pistas ---
         letras.forEach((letra, index) => {
-            const letterElement = document.createElement('span');
+            const letterElement = document.createElement('div');
             letterElement.classList.add('letter-slot');
             
             // Si el índice actual está en nuestro conjunto de pistas, mostramos la letra
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Creamos un botón por cada letra
         letras.split('').forEach(letra => {
-            const keyButton = document.createElement('button');
+            const keyButton = document.createElement('div');
             keyButton.classList.add('key');
             keyButton.textContent = letra;
             
@@ -127,4 +127,5 @@ document.addEventListener('DOMContentLoaded', () => {
     inicializarJuego();
 
 });
+
 
