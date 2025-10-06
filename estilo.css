@@ -159,51 +159,52 @@ header {
     background-color: #1558b3;
 }
 
-        /* Estilo para un espacio que ha sido llenado */
-        .letter-slot.filled {
-            border-bottom-style: solid;
-        }
+/* Estilo para un espacio que ha sido llenado */
+.letter-slot.filled {
+    border-bottom-style: solid;
+}
 
-        .letter-slot.correct {
-            border-color: #34a853;
-            color: #34a853;
-        }
+.letter-slot.correct {
+    border-color: #34a853;
+    color: #34a853;
+}
 
-        #keyboard-section {
-            flex-basis: 280px; 
-        }
+#keyboard-section {
+    flex-basis: 280px; 
+}
 
-        #keyboard-container {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+#keyboard-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 
-        .key {
-            font-family: "Press Start 2P", monospace;
-            font-size: 1.2em;
-            font-weight: bold;
-            width: 45px;
-            height: 45px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background-color: #f9f9f9;
-            cursor: grab;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+.key {
+    font-family: "Press Start 2P", monospace;
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 45px;
+    height: 45px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    cursor: grab;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
         
-        /* La librería añade esta clase al elemento fantasma mientras se arrastra */
-        .sortable-ghost {
-            opacity: 0.4;
-            background: #c8ebfb;
-        }
+/* La librería añade esta clase al elemento fantasma mientras se arrastra */
+.sortable-ghost {
+    opacity: 0.4;
+    background: #c8ebfb;
+}
 
-        /* La librería añade esta clase al elemento que se está arrastrando */
-        .sortable-drag {
-            opacity: 1 !important; /* Aseguramos que el elemento original no desaparezca */
-        }
+/* La librería añade esta clase al elemento que se está arrastrando */
+.sortable-drag {
+    opacity: 1 !important; /* Aseguramos que el elemento original no desaparezca */
+}
+
 
 
