@@ -10,6 +10,7 @@ body {
     min-height: 100vh;
     margin: 0;
     padding: 20px;
+    user-selected: none;
 }
 
 /* --- Contenedor Principal del Juego --- */
@@ -158,33 +159,48 @@ header {
     background-color: #1558b3;
 }
 
- /* --- NUEVOS ESTILOS PARA DRAG & DROP --- */
-.letter-slot.drag-over {
-    background-color: #e8f0fe; /* Fondo azul claro al sobrevolar */
-    border-bottom-color: #4285f4;
-}
+        /* Estilo para un espacio que ha sido llenado */
+        .letter-slot.filled {
+            border-bottom-style: solid;
+        }
 
-.letter-slot.correct {
-    border-color: #34a853; /* Borde verde si es correcto */
-    color: #34a853;
-}
-@keyframes cambiarIncorrecto {
-    50% {border-color: red;}
-}
-.letter-slot.incorrect {
-    animation-name: cambiarIncorrecto;
-    animation-duration: 2s;
-}
+        .letter-slot.correct {
+            border-color: #34a853;
+            color: #34a853;
+        }
+
+        #keyboard-section {
+            flex-basis: 280px; 
+        }
+
+        #keyboard-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .key {
+            font-size: 1.2em;
+            font-weight: bold;
+            width: 45px;
+            height: 45px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            cursor: grab;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         
-/* NUEVO: Estilo para la tecla mientras se arrastra */
-.key.dragging {
-    opacity: 0.6;
-    cursor: grabbing;
-}
-        
-.key:disabled {
-    background-color: #dcdcdc;
-    color: #888;
-    cursor: not-allowed;
-    opacity: 0.7;
-}
+        /* La librería añade esta clase al elemento fantasma mientras se arrastra */
+        .sortable-ghost {
+            opacity: 0.4;
+            background: #c8ebfb;
+        }
+
+        /* La librería añade esta clase al elemento que se está arrastrando */
+        .sortable-drag {
+            opacity: 1 !important; /* Aseguramos que el elemento original no desaparezca */
+        }
